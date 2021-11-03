@@ -10,7 +10,17 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
+
+/**
+ * @author Marcelo Barboza
+ * 	Anotação @Entity responsavel por criar uma tabela na base de dados.
+ *  Anotação @Table(name = "tb_postagem") define um nome para a tabela.
+ *  Anotação @Id define o atributo id como um chave primária.
+ *  Anotação @GeneratedValue(strategy = GenerationType.IDENTITY) define como auto-incremento
+ *  Anotação @NotBlank não acessa 
+ *  Anotação @Size define um tamanho minimo e maximo de caractéres para o atributo
+ * */
 
 @Entity
 @Table(name = "tb_postagem")
@@ -25,10 +35,10 @@ public class Postagem {
 	private String titulo;
 	
 	@NotBlank(message = "O atributo texto é Obrigatório!")
-	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 500 caracteres")
+	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
 	private String texto;
 	
-	@UpdateTimestamp
+	@CreationTimestamp
 	private LocalDate data;
 	
 	/*Insira os Getters and Setters*/
