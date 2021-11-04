@@ -6,10 +6,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 /**
  * @author Marcelo Barboza
@@ -20,6 +23,9 @@ import org.hibernate.annotations.UpdateTimestamp;
  *  Anotação @NotBlank não acessa 
  *  Anotação @UpdateTimestamp captura e insere no atributo a data e hora da criação ou atualização
  *  Anotação @Size define um tamanho minimo e maximo de caractéres para o atributo
+ *  Anotação @ManyToOne cria um relacionamento muitos para um com a model/entity  Tema (o objeto tema assumo o papel de chave estrangeira)
+ *  Anotação @JsonIgnoreProperties("postagem") inibe a recursividade no relacionamento 
+ *  
  * */
 
 @Entity
@@ -40,6 +46,10 @@ public class Postagem {
 	
 	@UpdateTimestamp
 	private LocalDate data;
+	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Tema tema;
 	
 	/*Insira os Getters and Setters*/
 
@@ -74,5 +84,14 @@ public class Postagem {
 	public void setData(LocalDate data) {
 		this.data = data;
 	}
+
+	public Tema getTema() {
+		return tema;
+	}
+
+	public void setTema(Tema tema) {
+		this.tema = tema;
+	}
+	
 
 }
