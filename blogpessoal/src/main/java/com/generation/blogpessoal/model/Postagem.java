@@ -20,7 +20,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  *  Anotação @Table(name = "tb_postagem") define um nome para a tabela.
  *  Anotação @Id define o atributo id como um chave primária.
  *  Anotação @GeneratedValue(strategy = GenerationType.IDENTITY) define como auto-incremento
- *  Anotação @NotBlank não acessa 
+ *  Anotação @NotBlank Não aceita null e não string vazia.  
  *  Anotação @UpdateTimestamp captura e insere no atributo a data e hora da criação ou atualização
  *  Anotação @Size define um tamanho minimo e maximo de caractéres para o atributo
  *  Anotação @ManyToOne cria um relacionamento muitos para um com a model/entity  Tema (o objeto tema assumo o papel de chave estrangeira)
@@ -34,7 +34,7 @@ public class Postagem {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	private long id;
+	private Long id;
 	
 	@NotBlank(message = "O atributo título é Obrigatório!") 
 	@Size(min = 5, max = 100, message = "O atributo título deve conter no mínimo 05 e no máximo 100 caracteres")
@@ -51,15 +51,19 @@ public class Postagem {
 	@JsonIgnoreProperties("postagem")
 	private Tema tema;
 	
+	@ManyToOne
+	@JsonIgnoreProperties("postagem")
+	private Usuario usuario;
+	
 	/*Insira os Getters and Setters*/
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
+	
+	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public Long getId() {
+		return id;
+	}	
 
 	public String getTitulo() {
 		return titulo;
@@ -92,6 +96,13 @@ public class Postagem {
 	public void setTema(Tema tema) {
 		this.tema = tema;
 	}
-	
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
 }
