@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 /**
  * @author Marcelo Barboza
@@ -38,7 +38,7 @@ public class Postagem {
 	@Size(min = 10, max = 1000, message = "O atributo texto deve conter no mínimo 10 e no máximo 1000 caracteres")
 	private String texto;
 	
-	@CreationTimestamp
+	@UpdateTimestamp
 	private LocalDate data;
 	
 	/*Insira os Getters and Setters*/
