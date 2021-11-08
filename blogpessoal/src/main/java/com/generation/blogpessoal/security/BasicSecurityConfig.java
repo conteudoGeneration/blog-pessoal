@@ -12,6 +12,15 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+/**
+ * @author Marcelo Barboza
+ * 	Anotação @EnableWebSecurity habilita a camanda de segurançao e aplica as regras codificada abaixo
+ *  Hedamos da classe WebSecurityConfigurerAdapter pois ela possibilita reescrever os metodos configure.
+ *  
+ *  UserDetailsService é a interface responsável por converter a nossa classe UserLogin em uma classe que o SpringSecurity entenda.
+ *   
+ * */
+
 @EnableWebSecurity
 public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 	
@@ -45,5 +54,4 @@ public class BasicSecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().cors()
 			.and().csrf().disable();
 	}
-
 }
