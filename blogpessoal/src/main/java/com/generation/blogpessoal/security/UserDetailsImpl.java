@@ -15,6 +15,8 @@ private static final long serialVersionUID =1L;
 	
 	private String password;
 	
+	private List<GrantedAuthority> authorities;
+	
 	public UserDetailsImpl (Usuario user){
 		this.userName = user.getUsuario();
 		this.password = user.getSenha();
@@ -25,7 +27,7 @@ private static final long serialVersionUID =1L;
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 	
-		return null;
+		return authorities;
 	}
 
 	@Override
