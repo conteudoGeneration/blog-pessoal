@@ -3,6 +3,8 @@ package com.generation.blogpessoal.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,14 +53,14 @@ public class UsuarioController {
 	}
 
 	@PostMapping("/cadastrar")
-	public ResponseEntity<Usuario> postUsuario(@RequestBody Usuario usuario) {		
+	public ResponseEntity<Usuario> postUsuario(@Valid @RequestBody Usuario usuario) {		
 		return service.cadastrarUsuario(usuario)
 			.map(resp -> ResponseEntity.status(HttpStatus.CREATED).body(resp))
 			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());		
 	}
 	
 	@PutMapping("/atualizar")
-	public ResponseEntity<Usuario> putUsuario(@RequestBody Usuario usuario){		
+	public ResponseEntity<Usuario> putUsuario(@Valid @RequestBody Usuario usuario){		
 		return service.atualizarUsuario(usuario)
 			.map(resp -> ResponseEntity.status(HttpStatus.OK).body(resp))
 			.orElse(ResponseEntity.status(HttpStatus.BAD_REQUEST).build());
