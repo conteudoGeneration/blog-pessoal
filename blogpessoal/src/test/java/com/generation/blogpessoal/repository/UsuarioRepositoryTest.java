@@ -16,6 +16,15 @@ import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 
 import com.generation.blogpessoal.model.Usuario;
 
+/**
+ * @author Marcelo Barboza
+ * 	Anotação @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT) define a classe como uma classe de testes e habilita uma uma porta aleatória
+ *  Anotação @TestInstance(TestInstance.Lifecycle.PER_CLASS) define se os testes serão feitos metodo a metodo ou a Classe inteira, neste caso por Classe (PER_CLASS)
+ *  Anotação @BeforeAll define o que será feito antes dos testes serem iniciados
+ *  Anotação @Test define que é um metodo a ser testado
+ *  Anotação @DisplayName("Retorna 1 usuario") define um display que será mostrado como identificação do metodo no feedback do teste
+ * */
+
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class UsuarioRepositoryTest {
